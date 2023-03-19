@@ -1,3 +1,5 @@
+# https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_A
+
 def insertion_sort(nums: list[int]) -> list[int]:
   for i in range(1, len(nums)):
     v = nums[i]
