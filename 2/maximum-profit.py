@@ -16,7 +16,7 @@ max_diff = (-2) * (10**9)
 min = 2 * (10**9)
 
 quantity = int(input())
-nums = []
+nums: list[int] = []
 for q in range(quantity):
   nums.append(int(input()))
 for n in nums:
