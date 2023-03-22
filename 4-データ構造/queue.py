@@ -1,25 +1,25 @@
 # https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/3/ALDS1_3_B
 class Queue():
   def __init__(self):
-    self.data = [{}] # 0番目は使わない [{}←head, ?←tail, ...]
+    self.data = [] # [{}←(head,tail) ?, ...]
     self.head = 0
-    self.tail = 1
+    self.tail = 0
   
   def enqueue(self, x):
-    self.data.append(x)
-    self.head = 1
+    self.data.append(x) # self.data[self.head] = x
     self.tail += 1
   
   def dequeue(self):
     if self.is_empty():
       raise IndexError("data is empty")
-    self.tail -= 1
-    if self.tail == 1:
-      self.head = 0
-    return self.data.pop(1)
+    data = self.data[self.head]
+    self.data[self.head] = None
+    self.head += 1 # 右へ進む
+    return data
   
   def is_empty(self):
-    return True if self.head == 0 else False
+    # 先頭が末尾に追いついたとき 空になる
+    return True if self.head == self.tail else False 
 
 class Tasks(Queue):
   def __init__(self, qtm):
@@ -47,8 +47,7 @@ class Tasks(Queue):
     print(name+" "+str(self.clock))
   
   def postpone(self):
-    task = self.dequeue()
-    self.enqueue(task)
+    self.enqueue(self.dequeue())
 
 # main
 qty, quantum = list(map(int, input().split(' ')))
