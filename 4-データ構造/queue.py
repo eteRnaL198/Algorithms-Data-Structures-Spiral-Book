@@ -50,12 +50,12 @@ class Tasks(Queue):
     self.enqueue(self.dequeue())
 
 # main
-# qty, quantum = list(map(int, input().split(' ')))
-# task = Tasks(quantum) # [{name: foo, time: 100}, {}, ..]
-# for i in range(qty):
-#   name, time = input().split(' ')
-#   task.enqueue({"name": name, "time": int(time)})
-# task.execute()
+qty, quantum = list(map(int, input().split(' ')))
+task = Tasks(quantum) # [{name: foo, time: 100}, {}, ..]
+for i in range(qty):
+  name, time = input().split(' ')
+  task.enqueue({"name": name, "time": int(time)})
+task.execute()
 
 # リングバッファ
 class RingQueue(Queue):
