@@ -112,19 +112,19 @@ for i in range(qty):
   else:
     cmd = line[0]
     processor.execute(cmd)
-  # print(processor.list.data) #TODO delete
 processor.print()
 
-"""input
-8
-insert 1000000000
-insert 999999999
-deleteLast
-insert 1234566890
+"""input expected output: 1
+9
 insert 5
-deleteFirst
-insert 7
+insert 2
+insert 3
+insert 1
+delete 3
+insert 6
 delete 5
+deleteFirst
+deleteLast
 """
 
 
