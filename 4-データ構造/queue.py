@@ -50,9 +50,36 @@ class Tasks(Queue):
     self.enqueue(self.dequeue())
 
 # main
-qty, quantum = list(map(int, input().split(' ')))
-task = Tasks(quantum) # [{name: foo, time: 100}, {}, ..]
-for i in range(qty):
-  name, time = input().split(' ')
-  task.enqueue({"name": name, "time": int(time)})
-task.execute()
+# qty, quantum = list(map(int, input().split(' ')))
+# task = Tasks(quantum) # [{name: foo, time: 100}, {}, ..]
+# for i in range(qty):
+#   name, time = input().split(' ')
+#   task.enqueue({"name": name, "time": int(time)})
+# task.execute()
+
+# リングバッファ
+class RingQueue(Queue):
+  def __init__(self):
+    self.data = [None]*10
+    self.head = 0
+    self.tail = 0
+  
+  def enqueue(self, x):
+    if not self.is_full():
+      self.data[self.tail] = x
+      self.tail = (self.tail+1) % len(self.data)
+  
+  def dequeue(self):
+    if not self.is_empty():
+      data = self.data[self.head]
+      self.data[self.head] = None
+      self.head = (self.head+1) % len(self.data)
+      return data
+  
+  def is_empty(self):
+    # headとtailが重なってたら空
+    return True if self.tail == self.head else False
+  
+  def is_full(self):
+    # headとtailが同じだったら空になるから､1つ開けておく｡
+    return True if (self.tail+1) % len(self.data) == self.head else False
