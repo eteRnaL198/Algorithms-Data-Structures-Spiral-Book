@@ -1,6 +1,11 @@
 # https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/4/ALDS1_4_A
 
 def liner_search(targets, num):
+  """
+  Args:
+    targets(list[int]): 探す先
+    num(int): targetsの中にあるか調べたい対象の数字
+  """
   i = 0
   while i < len(targets) and targets[i] != num:
     i += 1
